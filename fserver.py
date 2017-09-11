@@ -8,13 +8,16 @@ def hello_world():
 	from isqlmap import isqlmap
 	isqlmap = isqlmap()
 	uri = request.form['url']
-	print uri
+	out = open('out_url.txt','a')
+	out.write(uri+"\n")
+	out.close
+	#print uri
 	method = request.form['method']
-	print method
+	#print method
 	headers = json.loads(str(request.form['headers']))
-	print headers
+	#print headers
 	body = request.form['body']
-	print body
+	#print body
 	isqlmap.extract_request(uri,method,headers,body)
  	return 'ok'
 
