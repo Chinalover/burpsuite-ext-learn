@@ -26,11 +26,15 @@ class ThreadNum(threading.Thread):
 			except:
 				time.sleep(1)
 				continue
-			isqlmap.extract_request(current_task[0],current_task[1],current_task[2],current_task[3])
-			log(current_task[0])
+			try:
+				isqlmap.extract_request(current_task[0],current_task[1],current_task[2],current_task[3])
+				log(current_task[0])
+			except:
+				pass
 
 def add_task(task):
 	queue.put(task)
+	print 'active thread count: %s' % str(threading.activeCount())
 def log(info):
 	locker.acquire()
 	print info
